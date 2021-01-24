@@ -12,10 +12,11 @@ sheet = client.open("tutorial").sheet1 # hook up finishes here, code start below
 
 data = sheet.get_all_records()
 
-row = sheet.row_values(3)
-col = sheet.col_values(3)
-cell = sheet.cell(1,2).value
+email_column = sheet.col_values(2)
+new_cust_email = sheet.col_values(8)
+customer_status = sheet.col_values(10)
 
-pprint(col)
-pprint(row)
-pprint(cell)
+
+for i in new_cust_email:
+    if i in email_column:
+        sheet.update('L2', 'Existing Customer!')
