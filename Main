@@ -12,11 +12,25 @@ sheet = client.open("tutorial").sheet1 # hook up finishes here, code start below
 
 data = sheet.get_all_records()
 
+
+name_column = sheet.col_values(1)
 email_column = sheet.col_values(2)
-new_cust_email = sheet.col_values(8)
-customer_status = sheet.col_values(10)
+# phone_column = sheet.col_values(3)  # formatting error on sheet
+address_column = sheet.col_values(4)
 
+new_cust_name = sheet.col_values(7)  # column G
+new_cust_email = sheet.col_values(8)    # column H
+# new_cust_phone = sheet.col_values(9)    # column I  # formatting error on sheet
+new_cust_address = sheet.col_values(10)     # column J
 
+status_col = sheet.col_values(12)  # status, column L
+
+existing_customer = []
+
+# func = if email in column H row x also in column B update column L row x with 'existing customer'
 for i in new_cust_email:
     if i in email_column:
-        sheet.update('L2', 'Existing Customer!')
+        cell = sheet.find(i)
+        existing_customer.append(cell)
+        sheet.update('R2C13', 'existing customer')
+print(existing_customer)
