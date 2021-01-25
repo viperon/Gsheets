@@ -27,7 +27,7 @@ status_col = sheet.col_values(12)  # status, column L
 
 existing_customer = []
 
-# func = if email in column H row x also in column B update column L row x with 'existing customer'
+# func = if email in column H row x also in column B update column M row x with 'existing customer'
 for i in new_cust_email:
     if i in email_column:
         cell = sheet.find(i)
