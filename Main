@@ -13,23 +13,23 @@ sheet = client.open("tutorial").sheet1       # hook up finishes here, code start
 data = sheet.get_all_records()
 
 
-existing_cust_name = sheet.col_values(1)
-existing_cust_email = sheet.col_values(2)
-# existing_cust_phone = sheet.col_values(3)  # formatting error on sheet
-existing_cust_address = sheet.col_values(4)
+existing_cust_names = sheet.col_values(1)
+existing_cust_emails = sheet.col_values(2)
+# existing_cust_phones = sheet.col_values(3)  # formatting error on sheet
+existing_cust_addresses = sheet.col_values(4)
 
-new_cust_name = sheet.col_values(7)         # column G
-new_cust_email = sheet.col_values(8)        # column H
-# new_cust_phone = sheet.col_values(9)      # column I  # formatting error on sheet
-new_cust_address = sheet.col_values(10)     # column J
+new_cust_names = sheet.col_values(7)         # column G
+new_cust_emails = sheet.col_values(8)        # column H
+# new_cust_phones = sheet.col_values(9)      # column I  # formatting error on sheet
+new_cust_addresses = sheet.col_values(10)     # column J
 
 status_col = sheet.col_values(13)           # status, column M
 
 
 counter = 0
-for i in new_cust_email:
+for i in new_cust_emails:
     counter += 1
-    if i in existing_cust_email:
+    if i in existing_cust_emails:
 
         current_row = str(counter)
         sheet.update('m' + current_row, 'existing customer')
