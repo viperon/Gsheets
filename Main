@@ -8,29 +8,31 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 
 client = gspread.authorize(creds)
 
-sheet = client.open("tutorial").sheet1 # hook up finishes here, code start below
+sheet = client.open("tutorial").sheet1       # hook up finishes here, code start below
 
 data = sheet.get_all_records()
 
 
-name_column = sheet.col_values(1)
-email_column = sheet.col_values(2)
-# phone_column = sheet.col_values(3)  # formatting error on sheet
-address_column = sheet.col_values(4)
+existing_cust_name = sheet.col_values(1)
+existing_cust_email = sheet.col_values(2)
+# existing_cust_phone = sheet.col_values(3)  # formatting error on sheet
+existing_cust_address = sheet.col_values(4)
 
-new_cust_name = sheet.col_values(7)  # column G
-new_cust_email = sheet.col_values(8)    # column H
-# new_cust_phone = sheet.col_values(9)    # column I  # formatting error on sheet
+new_cust_name = sheet.col_values(7)         # column G
+new_cust_email = sheet.col_values(8)        # column H
+# new_cust_phone = sheet.col_values(9)      # column I  # formatting error on sheet
 new_cust_address = sheet.col_values(10)     # column J
 
-status_col = sheet.col_values(12)  # status, column L
+status_col = sheet.col_values(13)           # status, column M
 
-existing_customer = []
 
-# func = if email in column H row x also in column B update column M row x with 'existing customer'
+counter = 0
 for i in new_cust_email:
-    if i in email_column:
-        cell = sheet.find(i)
-        existing_customer.append(cell)
-        sheet.update('R2C13', 'existing customer')
-print(existing_customer)
+    counter += 1
+    if i in existing_cust_email:
+
+        current_row = str(counter)
+        sheet.update('m' + current_row, 'existing customer')
+
+    else:
+        pass # redundant ?
