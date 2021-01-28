@@ -26,14 +26,30 @@ new_cust_addresses = sheet.col_values(10)         # column J
 status_col = sheet.col_values(13)               # status, column M
 
 
-counter = 0
+def primary_search():
+    counter1 = 0
+    for i in new_cust_emails:
+        counter1 += 1
+        current_row = str(counter1)
+        if i in existing_cust_emails:
+            sheet.update('m' + current_row, 'existing customer')
 
-for i in new_cust_emails:
-    counter += 1
-    current_row = str(counter)
-    
-    if i in existing_cust_emails:
-        sheet.update('m' + current_row, 'existing customer')
+        else:
+            pass
 
-    else:
-        sheet.update('m' + current_row, 'new customer')
+primary_search()
+
+
+
+def secondary_search():
+    counter2 = 0
+    for i in new_cust_addresses:
+        counter2 += 1
+        current_row = str(counter2)
+        if i in existing_cust_addresses:
+
+            sheet.update('m' + current_row, 'existing customer')
+        else:
+            sheet.update('m' + current_row, 'new customer')
+
+secondary_search()
